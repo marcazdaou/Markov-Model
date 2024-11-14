@@ -1,0 +1,95 @@
+1. Enter the number of hours it took you to complete the project between
+   the <<< and >>> signs below (eg, <<<10>>>).
+
+   <<<60>>>
+   
+2. Enter the difficulty level (1: very easy; 5: very difficult) of the project
+   between the <<< and >>> signs below (eg, <<<3>>>).
+
+   <<<4>>>
+
+3. Did you receive help from anyone? List their names, status (classmate, 
+   CS110 grad, TA, other), and the nature of help received.
+
+   Name               Status       Help Received
+   ----               ------       -------------
+
+   ...                ...          ...
+
+4. Provide a short description of how you approached each problem, issues you 
+   encountered, and how you resolved those issues.
+
+   Problem 1 (Markov Model Data Type)
+     Approach: The method takes in two arguments: text, the text to create the model from, and k, the order of the model
+
+First, the k argument is saved as an instance variable _k. Next, a SymbolTable object is created and saved as an
+instance variable _st.
+
+The text is then modified by appending a substring of k characters from the beginning of the text to the end of the text
+ creating a "circular" version of the text.
+
+A for loop is then used to iterate over the characters in the "circular" text.
+For each iteration, a substring of k characters is extracted from the "circular" text starting at the current iteration.
+
+If the extracted substring does not exist as a key in the SymbolTable,
+it is added as a new key and an empty dictionary is added as its value.
+If the next character in the "circular" text does not exist as a key in the dictionary associated with the substring,
+it is added with a value of 0. Finally, the value associated with the next character is incremented by 1.
+
+The order() method returns the order of the Markov model, which is stored in the private variable _k.
+
+The kgram_freq() method takes in a string kgram and returns the number of occurrences of that kgram in the Markov model.
+If the kgram is not of length _k, it raises a ValueError. If the kgram does not exist in the model, it returns 0.
+
+The char_freq() method takes in a kgram and a character c and
+returns the number of times that c follows the kgram in the Markov model. If the kgram is not of length _k,
+it raises a ValueError. If the kgram does not exist in the model or it is not followed by c, it returns 0.
+
+The rand function first checks if the given k-gram has a length of k, the number of characters the model uses
+to make predictions. If it does not, it raises a ValueError with a message indicating that the k-gram is not of the
+ correct length. Next, it checks if the given k-gram exists in the model. If it does not, it raises a ValueError with a
+ message indicating that the k-gram is unknown.
+
+If the k-gram is valid, the function gets the values in the model for the given k-gram and calculates the probabilities
+ of each of the characters that follow the k-gram. It then uses a function stdrandom.discrete to randomly choose a
+  character based on these probabilities. Finally, it returns the chosen character.
+
+The gen function takes a k-gram and a length n as input and returns a string of length n generated from the model.
+It does this by starting with the given k-gram and repeatedly calling the rand function to generate the next character
+in the string, until the string reaches the desired length.
+
+The replace_unknown function takes a string with unknown characters (~) as input and returns the same string with the
+ unknown characters replaced by the most probable characters from the model. It does this by iterating over the
+ characters in the input string and replacing each unknown character with the most probable character
+ from the model based on the k-grams before and after the unknown character. It uses the kgram_freq
+ and char_freq functions to calculate the probabilities of the different characters.
+     Issues and resolution: I had no issue
+
+   Problem 2 (Random Text Generator)
+     Approach: It retrieves two command-line arguments, which are expected to be integers, and assigns them to
+     the local variables k and n, respectively.
+It reads all the text from standard input and assigns it to the local variable text.
+It creates a new instance of the MarkovModel class, passing text and k as arguments. This creates a new Markov model
+ object that uses the given text and the given value of k to generate text.
+It uses the gen method of the MarkovModel object to generate n words of text, starting with the first k words of the
+original text.
+It writes the generated text to standard output using the writeln method from the stdio module.
+
+     Issues and resolution: I had no issue
+
+   Problem 3 (Noisy Message Decoder)
+     Approach: This code imports the MarkovModel class from the markov_model module, as well as the stdio and
+     sys modules. The main() function is then defined, which reads command-line arguments to determine the value of
+     k and the text of a "corrupted" string.
+
+The main() function then creates a MarkovModel object using the text and k value, and uses the model to
+ replace unknown characters in the corrupted string. Finally, the decoded text is written to standard output using the
+  writeln() method from the stdio module.
+
+     Issues and resolution: I had no issue
+
+5. List any other comments here. Feel free to provide any feedback on how
+   much you learned from doing the assignment, and whether you enjoyed
+   doing it.
+
+   ...
